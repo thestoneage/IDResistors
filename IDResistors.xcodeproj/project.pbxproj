@@ -1,0 +1,526 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4993CF38248E5D8D00701969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF37248E5D8D00701969 /* AppDelegate.swift */; };
+		4993CF3A248E5D8D00701969 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF39248E5D8D00701969 /* SceneDelegate.swift */; };
+		4993CF3C248E5D8D00701969 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF3B248E5D8D00701969 /* ContentView.swift */; };
+		4993CF3E248E5D9100701969 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4993CF3D248E5D9100701969 /* Assets.xcassets */; };
+		4993CF41248E5D9100701969 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4993CF40248E5D9100701969 /* Preview Assets.xcassets */; };
+		4993CF44248E5D9100701969 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4993CF42248E5D9100701969 /* LaunchScreen.storyboard */; };
+		4993CF66248E5E3500701969 /* THTToleranceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF59248E5E3300701969 /* THTToleranceSelectionView.swift */; };
+		4993CF67248E5E3500701969 /* Computations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF5A248E5E3300701969 /* Computations.swift */; };
+		4993CF69248E5E3500701969 /* THTDigitSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF5C248E5E3400701969 /* THTDigitSelectionView.swift */; };
+		4993CF6A248E5E3500701969 /* SMDContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF5D248E5E3400701969 /* SMDContentView.swift */; };
+		4993CF6B248E5E3500701969 /* THTCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF5E248E5E3400701969 /* THTCodeView.swift */; };
+		4993CF6C248E5E3500701969 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF5F248E5E3400701969 /* Defaults.swift */; };
+		4993CF6E248E5E3500701969 /* THTContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF61248E5E3400701969 /* THTContentView.swift */; };
+		4993CF6F248E5E3500701969 /* ResistorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF62248E5E3400701969 /* ResistorInputView.swift */; };
+		4993CF70248E5E3500701969 /* SMDCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF63248E5E3500701969 /* SMDCodeView.swift */; };
+		4993CF71248E5E3500701969 /* THTMultiplierSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF64248E5E3500701969 /* THTMultiplierSelectionView.swift */; };
+		4993CF72248E5E3500701969 /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF65248E5E3500701969 /* Code.swift */; };
+		4993CF75248E5E4A00701969 /* CodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF73248E5E4A00701969 /* CodeTests.swift */; };
+		4993CF76248E5E4A00701969 /* ComputationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF74248E5E4A00701969 /* ComputationsTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4993CF4B248E5D9100701969 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4993CF2C248E5D8C00701969 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4993CF33248E5D8D00701969;
+			remoteInfo = IDResistors;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4993CF34248E5D8D00701969 /* IDResistors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDResistors.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4993CF37248E5D8D00701969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4993CF39248E5D8D00701969 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4993CF3B248E5D8D00701969 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4993CF3D248E5D9100701969 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4993CF40248E5D9100701969 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4993CF43248E5D9100701969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4993CF45248E5D9100701969 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4993CF4A248E5D9100701969 /* IDResistorsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDResistorsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4993CF50248E5D9100701969 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4993CF59248E5E3300701969 /* THTToleranceSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTToleranceSelectionView.swift; sourceTree = "<group>"; };
+		4993CF5A248E5E3300701969 /* Computations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Computations.swift; sourceTree = "<group>"; };
+		4993CF5C248E5E3400701969 /* THTDigitSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTDigitSelectionView.swift; sourceTree = "<group>"; };
+		4993CF5D248E5E3400701969 /* SMDContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMDContentView.swift; sourceTree = "<group>"; };
+		4993CF5E248E5E3400701969 /* THTCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTCodeView.swift; sourceTree = "<group>"; };
+		4993CF5F248E5E3400701969 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		4993CF61248E5E3400701969 /* THTContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTContentView.swift; sourceTree = "<group>"; };
+		4993CF62248E5E3400701969 /* ResistorInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResistorInputView.swift; sourceTree = "<group>"; };
+		4993CF63248E5E3500701969 /* SMDCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMDCodeView.swift; sourceTree = "<group>"; };
+		4993CF64248E5E3500701969 /* THTMultiplierSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTMultiplierSelectionView.swift; sourceTree = "<group>"; };
+		4993CF65248E5E3500701969 /* Code.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
+		4993CF73248E5E4A00701969 /* CodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeTests.swift; sourceTree = "<group>"; };
+		4993CF74248E5E4A00701969 /* ComputationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputationsTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4993CF31248E5D8D00701969 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4993CF47248E5D9100701969 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4993CF2B248E5D8C00701969 = {
+			isa = PBXGroup;
+			children = (
+				4993CF36248E5D8D00701969 /* IDResistors */,
+				4993CF4D248E5D9100701969 /* IDResistorsTests */,
+				4993CF35248E5D8D00701969 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4993CF35248E5D8D00701969 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4993CF34248E5D8D00701969 /* IDResistors.app */,
+				4993CF4A248E5D9100701969 /* IDResistorsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4993CF36248E5D8D00701969 /* IDResistors */ = {
+			isa = PBXGroup;
+			children = (
+				4993CF37248E5D8D00701969 /* AppDelegate.swift */,
+				4993CF39248E5D8D00701969 /* SceneDelegate.swift */,
+				4993CF65248E5E3500701969 /* Code.swift */,
+				4993CF62248E5E3400701969 /* ResistorInputView.swift */,
+				4993CF3B248E5D8D00701969 /* ContentView.swift */,
+				4993CF5A248E5E3300701969 /* Computations.swift */,
+				4993CF5F248E5E3400701969 /* Defaults.swift */,
+				4993CF63248E5E3500701969 /* SMDCodeView.swift */,
+				4993CF5D248E5E3400701969 /* SMDContentView.swift */,
+				4993CF5E248E5E3400701969 /* THTCodeView.swift */,
+				4993CF61248E5E3400701969 /* THTContentView.swift */,
+				4993CF5C248E5E3400701969 /* THTDigitSelectionView.swift */,
+				4993CF64248E5E3500701969 /* THTMultiplierSelectionView.swift */,
+				4993CF59248E5E3300701969 /* THTToleranceSelectionView.swift */,
+				4993CF3D248E5D9100701969 /* Assets.xcassets */,
+				4993CF42248E5D9100701969 /* LaunchScreen.storyboard */,
+				4993CF45248E5D9100701969 /* Info.plist */,
+				4993CF3F248E5D9100701969 /* Preview Content */,
+			);
+			path = IDResistors;
+			sourceTree = "<group>";
+		};
+		4993CF3F248E5D9100701969 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4993CF40248E5D9100701969 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4993CF4D248E5D9100701969 /* IDResistorsTests */ = {
+			isa = PBXGroup;
+			children = (
+				4993CF73248E5E4A00701969 /* CodeTests.swift */,
+				4993CF74248E5E4A00701969 /* ComputationsTests.swift */,
+				4993CF50248E5D9100701969 /* Info.plist */,
+			);
+			path = IDResistorsTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4993CF33248E5D8D00701969 /* IDResistors */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4993CF53248E5D9100701969 /* Build configuration list for PBXNativeTarget "IDResistors" */;
+			buildPhases = (
+				4993CF30248E5D8D00701969 /* Sources */,
+				4993CF31248E5D8D00701969 /* Frameworks */,
+				4993CF32248E5D8D00701969 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IDResistors;
+			productName = IDResistors;
+			productReference = 4993CF34248E5D8D00701969 /* IDResistors.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4993CF49248E5D9100701969 /* IDResistorsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4993CF56248E5D9100701969 /* Build configuration list for PBXNativeTarget "IDResistorsTests" */;
+			buildPhases = (
+				4993CF46248E5D9100701969 /* Sources */,
+				4993CF47248E5D9100701969 /* Frameworks */,
+				4993CF48248E5D9100701969 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4993CF4C248E5D9100701969 /* PBXTargetDependency */,
+			);
+			name = IDResistorsTests;
+			productName = IDResistorsTests;
+			productReference = 4993CF4A248E5D9100701969 /* IDResistorsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4993CF2C248E5D8C00701969 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Marc Rummel";
+				TargetAttributes = {
+					4993CF33248E5D8D00701969 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					4993CF49248E5D9100701969 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 4993CF33248E5D8D00701969;
+					};
+				};
+			};
+			buildConfigurationList = 4993CF2F248E5D8C00701969 /* Build configuration list for PBXProject "IDResistors" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4993CF2B248E5D8C00701969;
+			productRefGroup = 4993CF35248E5D8D00701969 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4993CF33248E5D8D00701969 /* IDResistors */,
+				4993CF49248E5D9100701969 /* IDResistorsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4993CF32248E5D8D00701969 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4993CF44248E5D9100701969 /* LaunchScreen.storyboard in Resources */,
+				4993CF41248E5D9100701969 /* Preview Assets.xcassets in Resources */,
+				4993CF3E248E5D9100701969 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4993CF48248E5D9100701969 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4993CF30248E5D8D00701969 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4993CF72248E5E3500701969 /* Code.swift in Sources */,
+				4993CF6F248E5E3500701969 /* ResistorInputView.swift in Sources */,
+				4993CF66248E5E3500701969 /* THTToleranceSelectionView.swift in Sources */,
+				4993CF6A248E5E3500701969 /* SMDContentView.swift in Sources */,
+				4993CF38248E5D8D00701969 /* AppDelegate.swift in Sources */,
+				4993CF3A248E5D8D00701969 /* SceneDelegate.swift in Sources */,
+				4993CF3C248E5D8D00701969 /* ContentView.swift in Sources */,
+				4993CF67248E5E3500701969 /* Computations.swift in Sources */,
+				4993CF70248E5E3500701969 /* SMDCodeView.swift in Sources */,
+				4993CF71248E5E3500701969 /* THTMultiplierSelectionView.swift in Sources */,
+				4993CF6C248E5E3500701969 /* Defaults.swift in Sources */,
+				4993CF6E248E5E3500701969 /* THTContentView.swift in Sources */,
+				4993CF69248E5E3500701969 /* THTDigitSelectionView.swift in Sources */,
+				4993CF6B248E5E3500701969 /* THTCodeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4993CF46248E5D9100701969 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4993CF75248E5E4A00701969 /* CodeTests.swift in Sources */,
+				4993CF76248E5E4A00701969 /* ComputationsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4993CF4C248E5D9100701969 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4993CF33248E5D8D00701969 /* IDResistors */;
+			targetProxy = 4993CF4B248E5D9100701969 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4993CF42248E5D9100701969 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4993CF43248E5D9100701969 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4993CF51248E5D9100701969 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4993CF52248E5D9100701969 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4993CF54248E5D9100701969 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"IDResistors/Preview Content\"";
+				DEVELOPMENT_TEAM = J6HU7FZCS8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = IDResistors/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.thestoneage.IDResistors;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4993CF55248E5D9100701969 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"IDResistors/Preview Content\"";
+				DEVELOPMENT_TEAM = J6HU7FZCS8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = IDResistors/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.thestoneage.IDResistors;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4993CF57248E5D9100701969 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J6HU7FZCS8;
+				INFOPLIST_FILE = IDResistorsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.thestoneage.IDResistorsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IDResistors.app/IDResistors";
+			};
+			name = Debug;
+		};
+		4993CF58248E5D9100701969 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J6HU7FZCS8;
+				INFOPLIST_FILE = IDResistorsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.thestoneage.IDResistorsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IDResistors.app/IDResistors";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4993CF2F248E5D8C00701969 /* Build configuration list for PBXProject "IDResistors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4993CF51248E5D9100701969 /* Debug */,
+				4993CF52248E5D9100701969 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4993CF53248E5D9100701969 /* Build configuration list for PBXNativeTarget "IDResistors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4993CF54248E5D9100701969 /* Debug */,
+				4993CF55248E5D9100701969 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4993CF56248E5D9100701969 /* Build configuration list for PBXNativeTarget "IDResistorsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4993CF57248E5D9100701969 /* Debug */,
+				4993CF58248E5D9100701969 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4993CF2C248E5D8C00701969 /* Project object */;
+}
