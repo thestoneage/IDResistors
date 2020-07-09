@@ -1,8 +1,8 @@
-#  Resisstance
+#  IDResistors
 
 ![AppIcon](https://github.com/thestoneage/IDResistors/blob/gh-pages/assets/app-icon.png)
 
-Resistance is a simple app for identifing the values smd and through hole resistors. It's developed using SwiftUI and the Combine, and uses no third party libraries.
+IDResistors is a simple app for identifing the values smd and through hole resistors. It's developed using SwiftUI and the Combine, and uses no third party libraries.
 
 ## Features
 
