@@ -13,12 +13,14 @@ import Combine
 class SMDCodeModel: ObservableObject {
     @Published var input  = ""
     @Published var inInputMode = false
+    @Published var validInput = false
     var offset = 0
 
     func enterInputMode(numberOfDigits: Int) {
         self.input = String(repeating: "_", count: numberOfDigits)
         self.offset = 0
         self.inInputMode = true
+        self.validInput = false
     }
 
     func appendCharacter(character: String) {
@@ -26,6 +28,7 @@ class SMDCodeModel: ObservableObject {
         self.input.replaceSubrange(index...index , with: character)
         self.offset += 1
         if input.index(input.startIndex, offsetBy: offset) == input.endIndex {
+            validInput = true
             inInputMode = false
         }
     }
@@ -44,7 +47,6 @@ struct SMDCodeView: View {
     @Binding var digitCount: Int
     
     @ObservedObject var model = SMDCodeModel()
-    @State var test: String = "ABC"
 
     var text: String {
         if (model.inInputMode) {
@@ -68,7 +70,9 @@ struct SMDCodeView: View {
                     .onTapGesture {
                         self.model.enterInputMode(numberOfDigits: self.digitCount)
                 }.onReceive(self.model.$input) { input in
+                    if self.model.inInputMode == false && self.model.validInput == true {
                         self.code.update(smdCode: self.model.input)
+                    }
                 }
                 Spacer()
             }
