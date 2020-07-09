@@ -26,6 +26,7 @@
 		4993CF72248E5E3500701969 /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF65248E5E3500701969 /* Code.swift */; };
 		4993CF75248E5E4A00701969 /* CodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF73248E5E4A00701969 /* CodeTests.swift */; };
 		4993CF76248E5E4A00701969 /* ComputationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF74248E5E4A00701969 /* ComputationsTests.swift */; };
+		49BE216924B7494400756218 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 49BE216824B7494400756218 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		4993CF65248E5E3500701969 /* Code.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
 		4993CF73248E5E4A00701969 /* CodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeTests.swift; sourceTree = "<group>"; };
 		4993CF74248E5E4A00701969 /* ComputationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputationsTests.swift; sourceTree = "<group>"; };
+		49BE216824B7494400756218 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		4993CF2B248E5D8C00701969 = {
 			isa = PBXGroup;
 			children = (
+				49BE216824B7494400756218 /* README.md */,
 				4993CF36248E5D8D00701969 /* IDResistors */,
 				4993CF4D248E5D9100701969 /* IDResistorsTests */,
 				4993CF35248E5D8D00701969 /* Products */,
@@ -226,6 +229,7 @@
 			files = (
 				4993CF44248E5D9100701969 /* LaunchScreen.storyboard in Resources */,
 				4993CF41248E5D9100701969 /* Preview Assets.xcassets in Resources */,
+				49BE216924B7494400756218 /* README.md in Resources */,
 				4993CF3E248E5D9100701969 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
