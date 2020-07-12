@@ -2,6 +2,8 @@
 
 ![AppIcon](https://github.com/thestoneage/IDResistors/blob/gh-pages/assets/app-icon.png)
 
+[Download on the App Store!](https://apps.apple.com/de/app/id-resistors/id1517383962)
+
 IDResistors is a simple app for identifing the values smd and through hole resistors. It's developed using SwiftUI and the Combine, and uses no third party libraries.
 
 ## Features
