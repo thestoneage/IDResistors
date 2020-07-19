@@ -21,6 +21,8 @@ class InputModel: ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
     private let formatter = NumberFormatter()
 
+    private let inputMessage = NSLocalizedString("Enter a decimal number", comment: "Message when you input a resitor value.")
+
     private var numberValuePublisher: AnyPublisher<Double?, Never> {
         $valueText
             .removeDuplicates()
@@ -58,7 +60,7 @@ class InputModel: ObservableObject {
             .receive(on: RunLoop.main)
             .map {
                 if $0 == true {
-                    return "Enter a decimal number"
+                    return self.inputMessage
                 }
                 else {
                     return ""
@@ -81,20 +83,29 @@ struct ResistorInputView: View {
 
     @State var showTolerances: Bool
 
+    private let textFieldTitle = NSLocalizedString("Enter Value:",
+                        comment: "Title of Textfield to enter a resistor value")
+    private let pickerTitle = NSLocalizedString("Unit",
+                        comment: "Unit of input value")
+    private let stepperTitle = NSLocalizedString("Tolerance",
+                        comment: "Tolerance steppter title")
+    private let buttonTitle = NSLocalizedString("Set Resistor Value",
+                        comment: "Button title to set the value of the resistor")
+
     let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
     @State var tolerance = 2
 
     var body: some View {
         Form {
             Section(footer: Text(model.valueMessage)) {
-                TextField("Enter Value:", text: $model.valueText)
-                Picker("Rings", selection: $model.valueScale) {
+                TextField(textFieldTitle, text: $model.valueText)
+                Picker(pickerTitle, selection: $model.valueScale) {
                     Text("Ω").tag(1)
                     Text("kΩ").tag(1000)
                     Text("MΩ").tag(1000000)
                 }.pickerStyle(SegmentedPickerStyle())
                 if showTolerances {
-                    Stepper("Tolerance \(tolerances[tolerance].string)", value: $tolerance, in: 0...(tolerances.count - 1))
+                    Stepper("\(stepperTitle) \(tolerances[tolerance].string)", value: $tolerance, in: 0...(tolerances.count - 1))
                 }
             }
             Section() {
@@ -104,7 +115,7 @@ struct ResistorInputView: View {
                         self.code.toleranceRing = self.tolerances[self.tolerance]
                     }
                     self.presentationMode.wrappedValue.dismiss() }) {
-                        Text("Set Resistor Value")
+                        Text(buttonTitle)
                 }.disabled(model.formInvalid)
             }
         }

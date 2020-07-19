@@ -12,6 +12,9 @@ import SwiftUI
 struct SMDContentView: View {
     @State var numberOfDigits: Int = 3
 
+    let navigationBarTitle = NSLocalizedString("SMD Resistor Code",
+                                comment: "Title of SMD Content View on Navigation Bar")
+
     var body: some View {
         NavigationView {
             VStack {
@@ -20,7 +23,9 @@ struct SMDContentView: View {
                 }
                 SMDDigitPicker(numberOfDigits: $numberOfDigits)
                 SMDCodeView(digitCount: $numberOfDigits)
-                    .navigationBarTitle("SMD Resistor Code", displayMode: .inline)
+                    .navigationBarTitle(
+                        Text(navigationBarTitle),
+                        displayMode: .inline)
                 Spacer()
             }.padding()
         }
@@ -30,10 +35,17 @@ struct SMDContentView: View {
 struct SMDDigitPicker: View {
     @Binding var numberOfDigits: Int
 
+    private let pickerTitle = NSLocalizedString("Digits",
+                                comment: "Title of digit Picker")
+    private let pickerItemTitle3D = NSLocalizedString("3 Digits",
+                                comment: "Title of Picker Item")
+    private let pickerItemTitle4D = NSLocalizedString("4 Digits",
+                                comment: "Title of Picker Item")
+
     var body: some View {
-        Picker("Rings", selection: $numberOfDigits) {
-            Text("3 Digits").tag(3)
-            Text("4 Digits").tag(4)
+        Picker(pickerTitle, selection: $numberOfDigits) {
+            Text(pickerItemTitle3D).tag(3)
+            Text(pickerItemTitle4D).tag(4)
         }.pickerStyle(SegmentedPickerStyle())
     }
 
