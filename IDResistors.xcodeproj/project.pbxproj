@@ -64,6 +64,7 @@
 		4993CF65248E5E3500701969 /* Code.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
 		4993CF73248E5E4A00701969 /* CodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeTests.swift; sourceTree = "<group>"; };
 		4993CF74248E5E4A00701969 /* ComputationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputationsTests.swift; sourceTree = "<group>"; };
+		49945CBC24C466550044F5D0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		49BE216824B7494400756218 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +212,7 @@
 			knownRegions = (
 				en,
 				de,
+				fr,
 			);
 			mainGroup = 4993CF2B248E5D8C00701969;
 			productRefGroup = 4993CF35248E5D8D00701969 /* Products */;
@@ -291,6 +293,7 @@
 			children = (
 				4945573624C24866001B53A2 /* en */,
 				4945573824C24878001B53A2 /* de */,
+				49945CBC24C466550044F5D0 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
