@@ -9,6 +9,7 @@
 
 import SwiftUI
 
+
 extension AnyTransition {
     static var moveAndFade: AnyTransition {
         let insertion = AnyTransition.move(edge: .top).combined(with: .opacity)
@@ -21,7 +22,12 @@ extension AnyTransition {
 struct THTContentView: View {
     @EnvironmentObject var code: Code
     @State var significantDigits:Int = 2
-    
+
+    let pickerTitle = NSLocalizedString("Rings", comment: "Title of ring picker")
+    let pickerItemTitle4R = NSLocalizedString("4 Rings", comment: "Title of 4 rings picker")
+    let pickerItemTitle5R = NSLocalizedString("5 Rings", comment: "Title of 5 rings picker")
+    let navigationBarTitle = NSLocalizedString("Resistor Color Code", comment: "Title of THTContentView")
+
     var measurementFormatter: MeasurementFormatter {
         let f = MeasurementFormatter()
         f.unitOptions = .providedUnit
@@ -33,19 +39,20 @@ struct THTContentView: View {
     }
     
     var body: some View {
-            NavigationView {
-                VStack {
-                    NavigationLink(destination: ResistorInputView(showTolerances: true)) {
-                        Text(resistorText)
-                    }
-                    Picker("Rings", selection: $significantDigits.animation()) {
-                        Text("4 Rings").tag(2)
-                        Text("5 Rings").tag(3)
-                    }.pickerStyle(SegmentedPickerStyle())
-                        .navigationBarTitle("Resistor Color Code", displayMode: .inline)
-                    THTCodeView(significantDigits: $significantDigits)
-                    Spacer()
-                }.padding()
+        NavigationView {
+            VStack {
+                NavigationLink(destination: ResistorInputView(showTolerances: true)) {
+                    Text(resistorText)
+                }
+                Picker(pickerTitle, selection: $significantDigits.animation()) {
+                    Text(pickerItemTitle4R).tag(2)
+                    Text(pickerItemTitle5R).tag(3)
+                }.pickerStyle(SegmentedPickerStyle())
+                    .navigationBarTitle(
+                        Text(navigationBarTitle), displayMode: .inline)
+                THTCodeView(significantDigits: $significantDigits)
+                Spacer()
+            }.padding()
         }
     }
 }
