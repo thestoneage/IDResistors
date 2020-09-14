@@ -28,3 +28,7 @@ Get the value of a SMD resistor
 
 ## License
 IDResistors is released under MIT license. See LICENCE for details.
+
+## Credits
+
+Spanish Localization by Diego Mesa
