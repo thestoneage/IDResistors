@@ -27,4 +27,4 @@ Get the value of a SMD resistor
 
 
 ## License
-Resistance is released under MIT license. See LICENCE for details.
+IDResistors is released under MIT license. See LICENCE for details.
