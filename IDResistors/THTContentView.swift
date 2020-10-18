@@ -22,6 +22,7 @@ extension AnyTransition {
 struct THTContentView: View {
     @EnvironmentObject var code: Code
     @State var significantDigits:Int = 2
+    @State var showInput: Bool = false
 
     let pickerTitle = NSLocalizedString("Rings", comment: "Title of ring picker")
     let pickerItemTitle4R = NSLocalizedString("4 Rings", comment: "Title of 4 rings picker")
@@ -41,8 +42,8 @@ struct THTContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: ResistorInputView(showTolerances: true)) {
-                    Text(resistorText)
+                Button(resistorText) {
+                    showInput = true
                 }
                 Picker(pickerTitle, selection: $significantDigits.animation()) {
                     Text(pickerItemTitle4R).tag(2)
@@ -53,6 +54,9 @@ struct THTContentView: View {
                 THTCodeView(significantDigits: $significantDigits)
                 Spacer()
             }.padding()
+            .sheet(isPresented: $showInput) {
+                ResistorInputView(showTolerances: true)
+            }
         }
     }
 }
