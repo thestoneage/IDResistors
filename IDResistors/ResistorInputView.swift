@@ -99,6 +99,7 @@ struct ResistorInputView: View {
         Form {
             Section(footer: Text(model.valueMessage)) {
                 TextField(textFieldTitle, text: $model.valueText)
+                    .keyboardType(.decimalPad)
                 Picker(pickerTitle, selection: $model.valueScale) {
                     Text("Ω").tag(1)
                     Text("kΩ").tag(1000)
