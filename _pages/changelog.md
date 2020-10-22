@@ -16,3 +16,11 @@ enter the value of the resistor and get the corresponding code.
 - THT color code with 4 or 5 rings.
 - SMD resistor codes with 3 or 4 digits.
 - Support for dark mode.
+
+# **Version 1.1**
+
+Localization in German and Frensh
+
+# **Version 1.2**
+
+Spanish localization.
