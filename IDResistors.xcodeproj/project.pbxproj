@@ -109,12 +109,12 @@
 		4993CF36248E5D8D00701969 /* IDResistors */ = {
 			isa = PBXGroup;
 			children = (
+				4945573724C24866001B53A2 /* Localizable.strings */,
 				4993CF37248E5D8D00701969 /* AppDelegate.swift */,
 				4993CF39248E5D8D00701969 /* SceneDelegate.swift */,
 				4993CF65248E5E3500701969 /* Code.swift */,
 				4993CF62248E5E3400701969 /* ResistorInputView.swift */,
 				4993CF3B248E5D8D00701969 /* ContentView.swift */,
-				4945573724C24866001B53A2 /* Localizable.strings */,
 				4993CF5A248E5E3300701969 /* Computations.swift */,
 				4993CF5F248E5E3400701969 /* Defaults.swift */,
 				4993CF5D248E5E3400701969 /* SMDContentView.swift */,

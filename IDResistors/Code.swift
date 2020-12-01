@@ -41,7 +41,7 @@ enum MultiplierRing: Int, CaseIterable, Identifiable, Equatable {
     case silver = -2
 }
 
-enum ToleranceRing: Double, CaseIterable, Identifiable, Equatable {
+enum ToleranceRing: Double, CaseIterable, Identifiable, Equatable, Codable {
     var id: Self { self }
 
     case brown = 0.01
@@ -70,16 +70,33 @@ struct ColorCode: Equatable {
     var tolerance: ToleranceRing
 }
 
+struct CodeCore: Codable {
+    var value: Double
+    var tolerance: ToleranceRing
+}
+
+extension CodeCore {
+    static let key = "CodeCoreKey"
+}
+
 class Code: ObservableObject {
     static let userDictValueKey = "VALUE"
 
     @Published var value: Double
     @Published var toleranceRing: ToleranceRing = .gold
 
-    init?(value: Double = 0.0, tolerance:ToleranceRing = .gold) {
+    init?(value: Double = 0.0, tolerance: ToleranceRing = .gold) {
         guard value >= 0 else { return nil }
         self.value = value
         self.toleranceRing = tolerance
+    }
+    
+    convenience init?(basis: CodeCore) {
+        self.init(value: basis.value, tolerance: basis.tolerance)
+    }
+    
+    var core: CodeCore {
+        return CodeCore(value: value, tolerance: toleranceRing)
     }
 
     var ohms:Measurement<UnitElectricResistance> {
