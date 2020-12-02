@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4900E4672576E62200E4BE31 /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900E4662576E62200E4BE31 /* PresetView.swift */; };
+		4900E46D2576EDC300E4BE31 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900E46C2576EDC300E4BE31 /* Extensions.swift */; };
 		4945573524C24866001B53A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4945573724C24866001B53A2 /* Localizable.strings */; };
 		4993CF38248E5D8D00701969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF37248E5D8D00701969 /* AppDelegate.swift */; };
 		4993CF3A248E5D8D00701969 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF39248E5D8D00701969 /* SceneDelegate.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4900E4662576E62200E4BE31 /* PresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetView.swift; sourceTree = "<group>"; };
+		4900E46C2576EDC300E4BE31 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4945573624C24866001B53A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4945573824C24878001B53A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4993CF34248E5D8D00701969 /* IDResistors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDResistors.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,10 +117,12 @@
 				4993CF37248E5D8D00701969 /* AppDelegate.swift */,
 				4993CF39248E5D8D00701969 /* SceneDelegate.swift */,
 				4993CF65248E5E3500701969 /* Code.swift */,
+				4900E46C2576EDC300E4BE31 /* Extensions.swift */,
 				4993CF62248E5E3400701969 /* ResistorInputView.swift */,
-				4993CF3B248E5D8D00701969 /* ContentView.swift */,
 				4993CF5A248E5E3300701969 /* Computations.swift */,
 				4993CF5F248E5E3400701969 /* Defaults.swift */,
+				4993CF3B248E5D8D00701969 /* ContentView.swift */,
+				4900E4662576E62200E4BE31 /* PresetView.swift */,
 				4993CF5D248E5E3400701969 /* SMDContentView.swift */,
 				4993CF63248E5E3500701969 /* SMDCodeView.swift */,
 				4993CF5E248E5E3400701969 /* THTCodeView.swift */,
@@ -258,12 +264,14 @@
 				4993CF6F248E5E3500701969 /* ResistorInputView.swift in Sources */,
 				4993CF66248E5E3500701969 /* THTToleranceSelectionView.swift in Sources */,
 				4993CF6A248E5E3500701969 /* SMDContentView.swift in Sources */,
+				4900E4672576E62200E4BE31 /* PresetView.swift in Sources */,
 				4993CF38248E5D8D00701969 /* AppDelegate.swift in Sources */,
 				4993CF3A248E5D8D00701969 /* SceneDelegate.swift in Sources */,
 				4993CF3C248E5D8D00701969 /* ContentView.swift in Sources */,
 				4993CF67248E5E3500701969 /* Computations.swift in Sources */,
 				4993CF70248E5E3500701969 /* SMDCodeView.swift in Sources */,
 				4993CF71248E5E3500701969 /* THTMultiplierSelectionView.swift in Sources */,
+				4900E46D2576EDC300E4BE31 /* Extensions.swift in Sources */,
 				4993CF6C248E5E3500701969 /* Defaults.swift in Sources */,
 				4993CF6E248E5E3500701969 /* THTContentView.swift in Sources */,
 				4993CF69248E5E3500701969 /* THTDigitSelectionView.swift in Sources */,
@@ -433,7 +441,7 @@
 				DEVELOPMENT_TEAM = J6HU7FZCS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = IDResistors/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,7 +464,7 @@
 				DEVELOPMENT_TEAM = J6HU7FZCS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = IDResistors/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

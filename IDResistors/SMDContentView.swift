@@ -11,7 +11,7 @@ import SwiftUI
 
 struct SMDContentView: View {
     @State var numberOfDigits: Int = 3
-    @State var showInput: Bool = false
+    @State var sheet: ContentViewSheet?
     @EnvironmentObject var code: Code
 
 
@@ -28,7 +28,7 @@ struct SMDContentView: View {
         NavigationView {
             VStack {
                 Button(ohmFormatter.string(from: code.scaledOhms)) {
-                    showInput = true
+                    sheet = .input
                 }
                 SMDDigitPicker(numberOfDigits: $numberOfDigits)
                 SMDCodeView(digitCount: $numberOfDigits)
@@ -37,9 +37,18 @@ struct SMDContentView: View {
                         displayMode: .inline)
                 Spacer()
             }.padding()
-            .sheet(isPresented: $showInput) {
-                ResistorInputView(showTolerances: false)
+            .sheet(item: $sheet) { item in
+                switch item {
+                case .input:
+                    ResistorInputView(showTolerances: false)
+                case .presets:
+                    PresetView()
+                }
             }
+            .navigationBarItems(trailing:
+                                    Button(action: { sheet = .presets }) {
+                Image(systemName: "list.bullet")
+            })
         }
     }
 }

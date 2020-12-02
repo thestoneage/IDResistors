@@ -70,13 +70,32 @@ struct ColorCode: Equatable {
     var tolerance: ToleranceRing
 }
 
-struct CodeCore: Codable {
+struct CodePreset: Codable {
+    var id = UUID()
     var value: Double
-    var tolerance: ToleranceRing
+    var tolerance: ToleranceRing = .gold
 }
 
-extension CodeCore {
+extension CodePreset {
     static let key = "CodeCoreKey"
+    
+    static let initialPresets: [CodePreset] = [
+        CodePreset(value: 1_000),
+        CodePreset(value: 1_500),
+        CodePreset(value: 2_200),
+        CodePreset(value: 3_300),
+        CodePreset(value: 4_700),
+        CodePreset(value: 6_800),
+        CodePreset(value: 10_000),
+        CodePreset(value: 15_000),
+        CodePreset(value: 22_000),
+        CodePreset(value: 33_000),
+        CodePreset(value: 47_000),
+        CodePreset(value: 68_000),
+        CodePreset(value: 100_000),
+        CodePreset(value: 220_000),
+        CodePreset(value: 470_000),
+    ]
 }
 
 class Code: ObservableObject {
@@ -91,12 +110,14 @@ class Code: ObservableObject {
         self.toleranceRing = tolerance
     }
     
-    convenience init?(basis: CodeCore) {
-        self.init(value: basis.value, tolerance: basis.tolerance)
-    }
-    
-    var core: CodeCore {
-        return CodeCore(value: value, tolerance: toleranceRing)
+    var preset: CodePreset {
+        get {
+            return CodePreset(value: value, tolerance: toleranceRing)
+        }
+        set {
+            self.value = newValue.value
+            self.toleranceRing = newValue.tolerance
+        }
     }
 
     var ohms:Measurement<UnitElectricResistance> {
