@@ -60,6 +60,7 @@ struct THTContentView: View {
                     .navigationBarTitle(
                         Text(navigationBarTitle), displayMode: .inline)
                 THTCodeView(significantDigits: $significantDigits)
+                    .frame(maxHeight: 50)
                 Spacer()
             }.padding()
             .sheet(item: $sheet) { item in

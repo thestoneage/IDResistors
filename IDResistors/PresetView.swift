@@ -7,6 +7,44 @@
 //
 
 import SwiftUI
+struct PresetCell: View {
+
+    var preset: CodePreset
+    
+    static let ohmFormatter: MeasurementFormatter = {
+        let f = MeasurementFormatter()
+        f.unitOptions = .naturalScale
+        return f
+    }()
+
+    var body: some View {
+        HStack {
+            Text(Self.ohmFormatter.string(from: preset.value))
+            Spacer()
+            CodeView(code:
+                        Code.colorCode(preset.value.converted(to: UnitElectricResistance.ohms).value,
+                                       significantDigits: 3,
+                                       tolerance: preset.tolerance))
+        }
+    }
+}
+
+struct CodeView: View {
+    var code: ColorCode
+    
+    var body: some View {
+        HStack(spacing: 4) {
+            ForEach(code.digits, id: \.self) { digit in
+                Rectangle()
+                    .fill(digit.color)
+            }
+            Rectangle()
+                .fill(code.multiplier.color)
+            Rectangle()
+                .fill(code.tolerance.color)
+        }.frame(maxWidth: 100)
+    }
+}
 
 struct PresetView: View {
     @AppStorage(CodePreset.key) var presets: [CodePreset] = CodePreset.initialPresets
@@ -18,7 +56,7 @@ struct PresetView: View {
         NavigationView {
             List {
                 ForEach(presets, id: \.self.id) { preset in
-                    Text(preset.value.description)
+                    PresetCell(preset: preset)
                         .onTapGesture {
                             code.preset = preset
                             presentationMode.wrappedValue.dismiss()

@@ -72,30 +72,37 @@ struct ColorCode: Equatable {
 
 struct CodePreset: Codable {
     var id = UUID()
-    var value: Double
+    var value: Measurement<UnitElectricResistance>
     var tolerance: ToleranceRing = .gold
 }
 
 extension CodePreset {
     static let key = "CodeCoreKey"
-    
+
     static let initialPresets: [CodePreset] = [
-        CodePreset(value: 1_000),
-        CodePreset(value: 1_500),
-        CodePreset(value: 2_200),
-        CodePreset(value: 3_300),
-        CodePreset(value: 4_700),
-        CodePreset(value: 6_800),
-        CodePreset(value: 10_000),
-        CodePreset(value: 15_000),
-        CodePreset(value: 22_000),
-        CodePreset(value: 33_000),
-        CodePreset(value: 47_000),
-        CodePreset(value: 68_000),
-        CodePreset(value: 100_000),
-        CodePreset(value: 220_000),
-        CodePreset(value: 470_000),
-    ]
+        100,
+        220,
+        470,
+        330,
+        680,
+        1_000,
+        1_500,
+        2_200,
+        3_300,
+        4_700,
+        6_800,
+        10_000,
+        15_000,
+        22_000,
+        33_000,
+        47_000,
+        68_000,
+        100_000,
+        220_000,
+        470_000,
+    ].map {
+        CodePreset(value: Measurement.init(value: $0, unit: UnitElectricResistance.ohms))
+    }
 }
 
 class Code: ObservableObject {
@@ -109,13 +116,13 @@ class Code: ObservableObject {
         self.value = value
         self.toleranceRing = tolerance
     }
-    
+
     var preset: CodePreset {
         get {
-            return CodePreset(value: value, tolerance: toleranceRing)
+            return CodePreset(value: ohms, tolerance: toleranceRing)
         }
         set {
-            self.value = newValue.value
+            self.value = newValue.value.converted(to: UnitElectricResistance.ohms).value
             self.toleranceRing = newValue.tolerance
         }
     }
@@ -134,18 +141,22 @@ class Code: ObservableObject {
             return Measurement.init(value: value, unit: UnitElectricResistance.ohms)
         }
     }
-
-    func colorCode(significantDigits: Int) -> ColorCode {
+    
+    static func colorCode(_ value: Double, significantDigits: Int, tolerance: ToleranceRing) -> ColorCode {
         guard value != 0.0 else {
             return ColorCode(digits: Array(repeating: .black, count: significantDigits),
                              multiplier: .black,
-                             tolerance: toleranceRing)
+                             tolerance: tolerance)
         }
-        let digits = Computations.digits(self.value, significantDigits: significantDigits)
-        let multiplier = Computations.multiplier(self.value, significantDigits: significantDigits)
+        let digits = Computations.digits(value, significantDigits: significantDigits)
+        let multiplier = Computations.multiplier(value, significantDigits: significantDigits)
         return ColorCode(digits: digits.map { DigitRing(rawValue: $0) ?? DigitRing.black },
                          multiplier: MultiplierRing(rawValue: multiplier) ?? .black,
-                         tolerance: self.toleranceRing)
+                         tolerance: tolerance)
+    }
+
+    func colorCode(significantDigits: Int) -> ColorCode {
+        Self.colorCode(self.value, significantDigits: significantDigits, tolerance: toleranceRing)
     }
 
     func update(colorCode: ColorCode) {
