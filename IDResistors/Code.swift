@@ -165,8 +165,8 @@ class Code: ObservableObject {
         self.toleranceRing = colorCode.tolerance
         self.value = Computations.value(digits: digits, multiplier: multiplier)
     }
-
-    func smdCode(digits: Int) -> String {
+    
+    static func smdCode(_ value: Double, digits: Int) -> String {
         guard value != 0 else { return String(repeating: "0", count: digits) }
         if value < pow(10.0, Double(digits - 2)) {
             let f = NumberFormatter()
@@ -175,14 +175,18 @@ class Code: ObservableObject {
             f.maximumFractionDigits = digits + 1
             f.minimumIntegerDigits = 0
             f.alwaysShowsDecimalSeparator = true
-            let number = NSNumber(value: self.value)
+            let number = NSNumber(value: value)
             let string = f.string(from: number)!
             return String(string.prefix(digits))
         }
         else {
-            return String(Computations.round(self.value, significantDigits: digits - 1)).prefix(digits - 1)
-                + String(Computations.multiplier(self.value, significantDigits: digits - 1))
+            return String(Computations.round(value, significantDigits: digits - 1)).prefix(digits - 1)
+                + String(Computations.multiplier(value, significantDigits: digits - 1))
         }
+    }
+
+    func smdCode(digits: Int) -> String {
+        Code.smdCode(value, digits: digits)
     }
 
     func update(smdCode: String) {

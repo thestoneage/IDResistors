@@ -26,7 +26,8 @@ struct PresetCell: View {
         .overlay(
             HStack {
                 Spacer()
-                CodeView(code:
+                SMDCodePresetView(preset: preset)
+                ColorCodeView(code:
                             Code.colorCode(preset.value.converted(to: UnitElectricResistance.ohms).value,
                                            significantDigits: 3,
                                            tolerance: preset.tolerance))
@@ -36,7 +37,24 @@ struct PresetCell: View {
     }
 }
 
-struct CodeView: View {
+struct SMDCodePresetView: View {
+    var preset: CodePreset
+    
+    var codeString: String {
+        let value = preset.value.converted(to: UnitElectricResistance.ohms).value
+        return Code.smdCode(value, digits: 3)
+    }
+    
+    var body: some View {
+        Text(codeString)
+            .fontWeight(.bold)
+            .padding(.horizontal)
+            .background(Color.black)
+            .foregroundColor(.white)
+    }
+}
+
+struct ColorCodeView: View {
     var code: ColorCode
     
     var body: some View {
