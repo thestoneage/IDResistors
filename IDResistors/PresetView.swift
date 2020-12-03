@@ -84,10 +84,13 @@ struct PresetView: View {
             List {
                 ForEach(presets, id: \.self.id) { preset in
                     PresetCell(preset: preset)
+                        .contentShape(Rectangle())
                         .onTapGesture {
                             code.preset = preset
                             presentationMode.wrappedValue.dismiss()
                         }
+
+
                 }
                 .onDelete { indexSet in
                     presets.remove(atOffsets: indexSet)
