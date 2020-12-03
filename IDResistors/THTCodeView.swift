@@ -63,6 +63,7 @@ struct THTCodeView: View {
                 THTMultiplierRingView(colorCode: colorCode, selection: $selection)
                 THTToleranceRingView(colorCode: colorCode, selection: $selection)
             }
+            .frame(maxHeight: 50)
             selectionView(colorCode: colorCode)
         }
     }
