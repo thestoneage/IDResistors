@@ -20,12 +20,19 @@ struct PresetCell: View {
     var body: some View {
         HStack {
             Text(Self.ohmFormatter.string(from: preset.value))
+                .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-            CodeView(code:
-                        Code.colorCode(preset.value.converted(to: UnitElectricResistance.ohms).value,
-                                       significantDigits: 3,
-                                       tolerance: preset.tolerance))
         }
+        .overlay(
+            HStack {
+                Spacer()
+                CodeView(code:
+                            Code.colorCode(preset.value.converted(to: UnitElectricResistance.ohms).value,
+                                           significantDigits: 3,
+                                           tolerance: preset.tolerance))
+                    
+            }
+        )
     }
 }
 
@@ -37,12 +44,14 @@ struct CodeView: View {
             ForEach(code.digits, id: \.self) { digit in
                 Rectangle()
                     .fill(digit.color)
-            }
+            }.aspectRatio(1.0, contentMode: .fit)
             Rectangle()
                 .fill(code.multiplier.color)
+                .aspectRatio(1.0, contentMode: .fit)
             Rectangle()
                 .fill(code.tolerance.color)
-        }.frame(maxWidth: 100)
+                .aspectRatio(1.0, contentMode: .fit)
+        }
     }
 }
 
