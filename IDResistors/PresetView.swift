@@ -99,7 +99,8 @@ struct PresetView: View {
             .navigationTitle("Presets")
             .navigationBarItems(trailing:
                                     Button(action: {
-                                        //TODO: Create new preset
+                                        let newPreset = CodePreset(value: code.ohms, tolerance: code.toleranceRing)
+                                        presets.append(newPreset)
             })
             {
                 Image(systemName: "plus")
@@ -110,6 +111,9 @@ struct PresetView: View {
 
 struct PresetView_Previews: PreviewProvider {
     static var previews: some View {
-        PresetView()
+        Group {
+            PresetView()
+            PresetView()
+        }
     }
 }
