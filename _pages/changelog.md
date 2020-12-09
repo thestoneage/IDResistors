@@ -24,3 +24,10 @@ Localization in German and Frensh
 # **Version 1.2**
 
 Spanish localization.
+
+# **Version 1.3**
+### `Latest Release`
+
+Support for presets - you can save commonly needed resistor values.
+
+
