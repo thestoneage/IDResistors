@@ -11,6 +11,15 @@ import SwiftUI
 
 struct SMDContentView: View {
     @State var numberOfDigits: Int = 3
+    @State var sheet: ContentViewSheet?
+    @EnvironmentObject var code: Code
+
+
+    let ohmFormatter: MeasurementFormatter = {
+        let f = MeasurementFormatter()
+        f.unitOptions = .providedUnit
+        return f
+    }()
 
     let navigationBarTitle = NSLocalizedString("SMD Resistor Code",
                                 comment: "Title of SMD Content View on Navigation Bar")
@@ -18,8 +27,8 @@ struct SMDContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: ResistorInputView(showTolerances: false)) {
-                    SMDValueView()
+                Button(ohmFormatter.string(from: code.scaledOhms)) {
+                    sheet = .input
                 }
                 SMDDigitPicker(numberOfDigits: $numberOfDigits)
                 SMDCodeView(digitCount: $numberOfDigits)
@@ -28,6 +37,18 @@ struct SMDContentView: View {
                         displayMode: .inline)
                 Spacer()
             }.padding()
+            .sheet(item: $sheet) { item in
+                switch item {
+                case .input:
+                    ResistorInputView(showTolerances: false)
+                case .presets:
+                    PresetView()
+                }
+            }
+            .navigationBarItems(trailing:
+                                    Button(action: { sheet = .presets }) {
+                Image(systemName: "list.bullet")
+            })
         }
     }
 }
@@ -49,20 +70,6 @@ struct SMDDigitPicker: View {
         }.pickerStyle(SegmentedPickerStyle())
     }
 
-}
-
-struct SMDValueView: View {
-    @EnvironmentObject var code: Code
-
-    let ohmFormatter: MeasurementFormatter = {
-        let f = MeasurementFormatter()
-        f.unitOptions = .providedUnit
-        return f
-    }()
-
-    var body: some View {
-        Text(ohmFormatter.string(from: code.scaledOhms))
-    }
 }
 
 struct SMDContenView_Previews: PreviewProvider {

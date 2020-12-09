@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4900E4672576E62200E4BE31 /* PresetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900E4662576E62200E4BE31 /* PresetView.swift */; };
+		4900E46D2576EDC300E4BE31 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900E46C2576EDC300E4BE31 /* Extensions.swift */; };
 		4945573524C24866001B53A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4945573724C24866001B53A2 /* Localizable.strings */; };
 		4993CF38248E5D8D00701969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF37248E5D8D00701969 /* AppDelegate.swift */; };
 		4993CF3A248E5D8D00701969 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993CF39248E5D8D00701969 /* SceneDelegate.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4900E4662576E62200E4BE31 /* PresetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetView.swift; sourceTree = "<group>"; };
+		4900E46C2576EDC300E4BE31 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4945573624C24866001B53A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4945573824C24878001B53A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4993CF34248E5D8D00701969 /* IDResistors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDResistors.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,14 +113,16 @@
 		4993CF36248E5D8D00701969 /* IDResistors */ = {
 			isa = PBXGroup;
 			children = (
+				4945573724C24866001B53A2 /* Localizable.strings */,
 				4993CF37248E5D8D00701969 /* AppDelegate.swift */,
 				4993CF39248E5D8D00701969 /* SceneDelegate.swift */,
 				4993CF65248E5E3500701969 /* Code.swift */,
+				4900E46C2576EDC300E4BE31 /* Extensions.swift */,
 				4993CF62248E5E3400701969 /* ResistorInputView.swift */,
-				4993CF3B248E5D8D00701969 /* ContentView.swift */,
-				4945573724C24866001B53A2 /* Localizable.strings */,
 				4993CF5A248E5E3300701969 /* Computations.swift */,
 				4993CF5F248E5E3400701969 /* Defaults.swift */,
+				4993CF3B248E5D8D00701969 /* ContentView.swift */,
+				4900E4662576E62200E4BE31 /* PresetView.swift */,
 				4993CF5D248E5E3400701969 /* SMDContentView.swift */,
 				4993CF63248E5E3500701969 /* SMDCodeView.swift */,
 				4993CF5E248E5E3400701969 /* THTCodeView.swift */,
@@ -194,7 +200,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Marc Rummel";
 				TargetAttributes = {
 					4993CF33248E5D8D00701969 = {
@@ -215,6 +221,7 @@
 				de,
 				fr,
 				es,
+				Base,
 			);
 			mainGroup = 4993CF2B248E5D8C00701969;
 			productRefGroup = 4993CF35248E5D8D00701969 /* Products */;
@@ -257,12 +264,14 @@
 				4993CF6F248E5E3500701969 /* ResistorInputView.swift in Sources */,
 				4993CF66248E5E3500701969 /* THTToleranceSelectionView.swift in Sources */,
 				4993CF6A248E5E3500701969 /* SMDContentView.swift in Sources */,
+				4900E4672576E62200E4BE31 /* PresetView.swift in Sources */,
 				4993CF38248E5D8D00701969 /* AppDelegate.swift in Sources */,
 				4993CF3A248E5D8D00701969 /* SceneDelegate.swift in Sources */,
 				4993CF3C248E5D8D00701969 /* ContentView.swift in Sources */,
 				4993CF67248E5E3500701969 /* Computations.swift in Sources */,
 				4993CF70248E5E3500701969 /* SMDCodeView.swift in Sources */,
 				4993CF71248E5E3500701969 /* THTMultiplierSelectionView.swift in Sources */,
+				4900E46D2576EDC300E4BE31 /* Extensions.swift in Sources */,
 				4993CF6C248E5E3500701969 /* Defaults.swift in Sources */,
 				4993CF6E248E5E3500701969 /* THTContentView.swift in Sources */,
 				4993CF69248E5E3500701969 /* THTDigitSelectionView.swift in Sources */,
@@ -331,6 +340,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -392,6 +402,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -425,17 +436,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"IDResistors/Preview Content\"";
 				DEVELOPMENT_TEAM = J6HU7FZCS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = IDResistors/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.thestoneage.IDResistors;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -448,17 +459,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"IDResistors/Preview Content\"";
 				DEVELOPMENT_TEAM = J6HU7FZCS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = IDResistors/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.thestoneage.IDResistors;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -41,7 +41,7 @@ enum MultiplierRing: Int, CaseIterable, Identifiable, Equatable {
     case silver = -2
 }
 
-enum ToleranceRing: Double, CaseIterable, Identifiable, Equatable {
+enum ToleranceRing: Double, CaseIterable, Identifiable, Equatable, Codable {
     var id: Self { self }
 
     case brown = 0.01
@@ -70,16 +70,61 @@ struct ColorCode: Equatable {
     var tolerance: ToleranceRing
 }
 
+struct CodePreset: Codable {
+    var id = UUID()
+    var value: Measurement<UnitElectricResistance>
+    var tolerance: ToleranceRing = .gold
+}
+
+extension CodePreset {
+    static let key = "CodeCoreKey"
+
+    static let initialPresets: [CodePreset] = [
+        100,
+        220,
+        470,
+        330,
+        680,
+        1_000,
+        1_500,
+        2_200,
+        3_300,
+        4_700,
+        6_800,
+        10_000,
+        15_000,
+        22_000,
+        33_000,
+        47_000,
+        68_000,
+        100_000,
+        220_000,
+        470_000,
+    ].map {
+        CodePreset(value: Measurement.init(value: $0, unit: UnitElectricResistance.ohms))
+    }
+}
+
 class Code: ObservableObject {
     static let userDictValueKey = "VALUE"
 
     @Published var value: Double
     @Published var toleranceRing: ToleranceRing = .gold
 
-    init?(value: Double = 0.0, tolerance:ToleranceRing = .gold) {
+    init?(value: Double = 0.0, tolerance: ToleranceRing = .gold) {
         guard value >= 0 else { return nil }
         self.value = value
         self.toleranceRing = tolerance
+    }
+
+    var preset: CodePreset {
+        get {
+            return CodePreset(value: ohms, tolerance: toleranceRing)
+        }
+        set {
+            self.value = newValue.value.converted(to: UnitElectricResistance.ohms).value
+            self.toleranceRing = newValue.tolerance
+        }
     }
 
     var ohms:Measurement<UnitElectricResistance> {
@@ -96,18 +141,22 @@ class Code: ObservableObject {
             return Measurement.init(value: value, unit: UnitElectricResistance.ohms)
         }
     }
-
-    func colorCode(significantDigits: Int) -> ColorCode {
+    
+    static func colorCode(_ value: Double, significantDigits: Int, tolerance: ToleranceRing) -> ColorCode {
         guard value != 0.0 else {
             return ColorCode(digits: Array(repeating: .black, count: significantDigits),
                              multiplier: .black,
-                             tolerance: toleranceRing)
+                             tolerance: tolerance)
         }
-        let digits = Computations.digits(self.value, significantDigits: significantDigits)
-        let multiplier = Computations.multiplier(self.value, significantDigits: significantDigits)
+        let digits = Computations.digits(value, significantDigits: significantDigits)
+        let multiplier = Computations.multiplier(value, significantDigits: significantDigits)
         return ColorCode(digits: digits.map { DigitRing(rawValue: $0) ?? DigitRing.black },
                          multiplier: MultiplierRing(rawValue: multiplier) ?? .black,
-                         tolerance: self.toleranceRing)
+                         tolerance: tolerance)
+    }
+
+    func colorCode(significantDigits: Int) -> ColorCode {
+        Self.colorCode(self.value, significantDigits: significantDigits, tolerance: toleranceRing)
     }
 
     func update(colorCode: ColorCode) {
@@ -116,8 +165,8 @@ class Code: ObservableObject {
         self.toleranceRing = colorCode.tolerance
         self.value = Computations.value(digits: digits, multiplier: multiplier)
     }
-
-    func smdCode(digits: Int) -> String {
+    
+    static func smdCode(_ value: Double, digits: Int) -> String {
         guard value != 0 else { return String(repeating: "0", count: digits) }
         if value < pow(10.0, Double(digits - 2)) {
             let f = NumberFormatter()
@@ -126,14 +175,18 @@ class Code: ObservableObject {
             f.maximumFractionDigits = digits + 1
             f.minimumIntegerDigits = 0
             f.alwaysShowsDecimalSeparator = true
-            let number = NSNumber(value: self.value)
+            let number = NSNumber(value: value)
             let string = f.string(from: number)!
             return String(string.prefix(digits))
         }
         else {
-            return String(Computations.round(self.value, significantDigits: digits - 1)).prefix(digits - 1)
-                + String(Computations.multiplier(self.value, significantDigits: digits - 1))
+            return String(Computations.round(value, significantDigits: digits - 1)).prefix(digits - 1)
+                + String(Computations.multiplier(value, significantDigits: digits - 1))
         }
+    }
+
+    func smdCode(digits: Int) -> String {
+        Code.smdCode(value, digits: digits)
     }
 
     func update(smdCode: String) {

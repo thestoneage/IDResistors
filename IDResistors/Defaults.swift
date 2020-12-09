@@ -37,6 +37,13 @@ struct Colors {
     static let violet = Color.purple
 
     static let gray = Color.gray
+
+}
+
+struct Keys {
+    static let launchCounter = "launchCounter"
+    
+    static let latestVersionPromptedForReview = "latestVersionPromptedForReview"
 }
 
 

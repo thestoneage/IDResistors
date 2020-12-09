@@ -9,6 +9,14 @@
 
 import SwiftUI
 
+enum ContentViewSheet: Identifiable {
+    case presets
+    case input
+    
+    var id: Int {
+        hashValue
+    }
+}
 
 extension AnyTransition {
     static var moveAndFade: AnyTransition {
@@ -22,6 +30,7 @@ extension AnyTransition {
 struct THTContentView: View {
     @EnvironmentObject var code: Code
     @State var significantDigits:Int = 2
+    @State var sheet: ContentViewSheet?
 
     let pickerTitle = NSLocalizedString("Rings", comment: "Title of ring picker")
     let pickerItemTitle4R = NSLocalizedString("4 Rings", comment: "Title of 4 rings picker")
@@ -41,8 +50,8 @@ struct THTContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: ResistorInputView(showTolerances: true)) {
-                    Text(resistorText)
+                Button(resistorText) {
+                    sheet = .input
                 }
                 Picker(pickerTitle, selection: $significantDigits.animation()) {
                     Text(pickerItemTitle4R).tag(2)
@@ -53,6 +62,18 @@ struct THTContentView: View {
                 THTCodeView(significantDigits: $significantDigits)
                 Spacer()
             }.padding()
+            .sheet(item: $sheet) { item in
+                switch item {
+                case .input:
+                    ResistorInputView(showTolerances: true)
+                case .presets:
+                    PresetView()
+                }
+            }
+            .navigationBarItems(trailing:
+                                    Button(action: {sheet = .presets}) {
+                Image(systemName: "list.bullet")
+            })
         }
     }
 }
