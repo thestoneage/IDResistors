@@ -19,7 +19,7 @@ struct ContentView: View {
     func requestReviewIfAppropiate() {
         let infoDictionaryKey = kCFBundleVersionKey as String
         guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String else { return }
-        if launchCounter > 2 && latestVersionPromptedForReview != currentVersion {
+        if launchCounter > 6 && latestVersionPromptedForReview != currentVersion {
             if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                 SKStoreReviewController.requestReview(in: scene)
                 latestVersionPromptedForReview = currentVersion
