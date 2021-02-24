@@ -14,9 +14,13 @@ class InputModel: ObservableObject {
     @Published var valueText: String = ""
     @Published var valueScale: Int = 1
     @Published var formInvalid:Bool = true
+    @Published var tolerance: Int = 2
 
     var valueMessage = ""
     var value: Double = 0.0
+    var toleranceRing: ToleranceRing = .gold
+    
+    private let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
 
     private var cancellableSet: Set<AnyCancellable> = []
     private let formatter = NumberFormatter()
@@ -26,10 +30,18 @@ class InputModel: ObservableObject {
     private var numberValuePublisher: AnyPublisher<Double?, Never> {
         $valueText
             .removeDuplicates()
-            .map {input in
+            .map { input in
                 self.formatter.number(from: input)?.doubleValue
             }
             .eraseToAnyPublisher()
+    }
+    
+    private var toleranceValuePublisher: AnyPublisher<ToleranceRing, Never> {
+        $tolerance
+            .removeDuplicates()
+            .map { input in
+                self.tolerances[self.tolerance]
+            }.eraseToAnyPublisher()
     }
 
     private var doubleValuePublisher: AnyPublisher<Double, Never> {
@@ -73,12 +85,17 @@ class InputModel: ObservableObject {
             .receive(on: RunLoop.main)
             .assign(to: \.value, on: self)
             .store(in: &cancellableSet)
+        
+        toleranceValuePublisher
+            .receive(on: RunLoop.main)
+            .assign(to: \.toleranceRing, on: self)
+            .store(in: &cancellableSet)
     }
 }
 
 struct ResistorInputView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var model = InputModel()
+    @ObservedObject var model: InputModel
     @EnvironmentObject var code: Code
 
     @State var showTolerances: Bool
@@ -93,8 +110,9 @@ struct ResistorInputView: View {
                         comment: "Button title to set the value of the resistor")
 
     let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
-    @State var tolerance = 2
 
+//    @State var tolerance = 2
+    
     var body: some View {
         Form {
             Section(footer: Text(model.valueMessage)) {
@@ -106,25 +124,25 @@ struct ResistorInputView: View {
                     Text("MΩ").tag(1000000)
                 }.pickerStyle(SegmentedPickerStyle())
                 if showTolerances {
-                    Stepper("\(stepperTitle) \(tolerances[tolerance].string)", value: $tolerance, in: 0...(tolerances.count - 1))
+                    Stepper("\(stepperTitle) \(tolerances[model.tolerance].string)", value: $model.tolerance, in: 0...(tolerances.count - 1))
                 }
             }
-            Section() {
-                Button(action: {
-                    self.code.value = self.model.value
-                    if self.showTolerances {
-                        self.code.toleranceRing = self.tolerances[self.tolerance]
-                    }
-                    self.presentationMode.wrappedValue.dismiss() }) {
-                        Text(buttonTitle)
-                }.disabled(model.formInvalid)
-            }
-        }
+//            Section() {
+//                Button(action: {
+//                    self.code.value = self.model.value
+//                    if self.showTolerances {
+//                        self.code.toleranceRing = self.tolerances[self.tolerance]
+//                    }
+//                    self.presentationMode.wrappedValue.dismiss() }) {
+//                        Text(buttonTitle)
+//                }.disabled(model.formInvalid)
+//            }
+        }.navigationTitle("Resistor Value")
     }
 }
 
 struct SMDInputView_Previews: PreviewProvider {
     static var previews: some View {
-        ResistorInputView(showTolerances: false).environmentObject(Code(value: 27_000)!)
+        ResistorInputView(model: InputModel(), showTolerances: false).environmentObject(Code(value: 27_000)!)
     }
 }

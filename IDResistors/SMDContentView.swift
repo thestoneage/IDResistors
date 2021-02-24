@@ -12,6 +12,8 @@ import SwiftUI
 struct SMDContentView: View {
     @State var numberOfDigits: Int = 3
     @State var sheet: ContentViewSheet?
+    
+    @ObservedObject var inputModel = InputModel()
     @EnvironmentObject var code: Code
 
 
@@ -40,7 +42,16 @@ struct SMDContentView: View {
             .sheet(item: $sheet) { item in
                 switch item {
                 case .input:
-                    ResistorInputView(showTolerances: false)
+                    NavigationView {
+                        ResistorInputView(model: inputModel, showTolerances: false)
+                            .navigationBarItems(leading: Button("Dismiss") {
+                                sheet = nil
+                            }, trailing: Button("Set Value") {
+                                self.code.value = self.inputModel.value
+                                sheet = nil
+                            }.disabled(self.inputModel.formInvalid)
+                            )
+                    }
                 case .presets:
                     PresetView()
                 }

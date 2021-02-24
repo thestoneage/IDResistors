@@ -31,6 +31,8 @@ struct THTContentView: View {
     @EnvironmentObject var code: Code
     @State var significantDigits:Int = 2
     @State var sheet: ContentViewSheet?
+    
+    @ObservedObject var inputModel = InputModel()
 
     let pickerTitle = NSLocalizedString("Rings", comment: "Title of ring picker")
     let pickerItemTitle4R = NSLocalizedString("4 Rings", comment: "Title of 4 rings picker")
@@ -65,7 +67,18 @@ struct THTContentView: View {
             .sheet(item: $sheet) { item in
                 switch item {
                 case .input:
-                    ResistorInputView(showTolerances: true)
+                    NavigationView {
+                        ResistorInputView(model: inputModel, showTolerances: true)
+                            .navigationBarItems(leading: Button("Dismiss") {
+                                sheet = nil
+                            }, trailing: Button("Set Value") {
+                                print(self.inputModel.toleranceRing)
+                                self.code.value = self.inputModel.value
+                                self.code.toleranceRing = self.inputModel.toleranceRing
+                                sheet = nil
+                            }.disabled(self.inputModel.formInvalid)
+                            )
+                    }
                 case .presets:
                     PresetView()
                 }
