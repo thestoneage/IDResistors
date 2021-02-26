@@ -82,24 +82,27 @@ struct PresetView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(presets, id: \.self.id) { preset in
-                    PresetCell(preset: preset)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            code.preset = preset
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                    
-                    
+            ScrollViewReader { proxy in
+                List {
+                    ForEach(Array(zip(presets.indices, presets)), id: \.0) { (index, preset) in
+                        PresetCell(preset: preset)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                code.preset = preset
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            .id(index)
+                    }
+                    .onDelete { indexSet in
+                        presets.remove(atOffsets: indexSet)
+                    }
+                    .onMove(perform: move)
+                    .onChange(of: presets.count) { _ in
+                        proxy.scrollTo(presets.count - 1)
+                    }
                 }
-                .onDelete { indexSet in
-                    presets.remove(atOffsets: indexSet)
-                }
-                .onMove(perform: move)
-            }
-            .navigationTitle("Presets")
-            .toolbar {
+                .navigationTitle("Presets")
+                .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button(action: {
                             let newPreset = CodePreset(value: code.ohms, tolerance: code.toleranceRing)
@@ -112,8 +115,10 @@ struct PresetView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         EditButton()
                     }
+                }
+                .environment(\.editMode, $editMode)
             }
-            .environment(\.editMode, $editMode)
+            
         }
     }
     
