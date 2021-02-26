@@ -78,6 +78,7 @@ struct PresetView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var code: Code
     
+    @State private var editMode = EditMode.inactive
     
     var body: some View {
         NavigationView {
@@ -112,6 +113,7 @@ struct PresetView: View {
                         EditButton()
                     }
             }
+            .environment(\.editMode, $editMode)
         }
     }
     
