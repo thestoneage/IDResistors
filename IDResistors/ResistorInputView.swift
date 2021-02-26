@@ -96,7 +96,7 @@ class InputModel: ObservableObject {
 struct ResistorInputView: View {
     @ObservedObject var model: InputModel
 
-    @State var showTolerances: Bool
+    var showTolerances: Bool
 
     private let textFieldTitle = NSLocalizedString("Enter Value:",
                         comment: "Title of Textfield to enter a resistor value")
@@ -108,8 +108,6 @@ struct ResistorInputView: View {
                         comment: "Button title to set the value of the resistor")
     private let title = NSLocalizedString("Resistor Value",
                         comment: "Headline of Resistor input view.")
-
-//    @State var tolerance = 2
     
     var body: some View {
         Form {
