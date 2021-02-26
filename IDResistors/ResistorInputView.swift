@@ -64,12 +64,10 @@ class InputModel: ObservableObject {
 
     init() {
         isValueInvalidPublisher
-            .receive(on: RunLoop.main)
             .assign(to: \.formInvalid, on: self)
             .store(in: &cancellableSet)
 
         isValueInvalidPublisher
-            .receive(on: RunLoop.main)
             .map {
                 if $0 == true {
                     return self.inputMessage
@@ -82,7 +80,6 @@ class InputModel: ObservableObject {
             .store(in: &cancellableSet)
 
         valuePublisher
-            .receive(on: RunLoop.main)
             .assign(to: \.value, on: self)
             .store(in: &cancellableSet)
         

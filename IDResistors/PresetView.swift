@@ -8,7 +8,7 @@
 
 import SwiftUI
 struct PresetCell: View {
-
+    
     var preset: CodePreset
     
     static let ohmFormatter: MeasurementFormatter = {
@@ -16,7 +16,7 @@ struct PresetCell: View {
         f.unitOptions = .naturalScale
         return f
     }()
-
+    
     var body: some View {
         HStack {
             Text(Self.ohmFormatter.string(from: preset.value))
@@ -28,10 +28,10 @@ struct PresetCell: View {
                 Spacer()
                 SMDCodePresetView(preset: preset)
                 ColorCodeView(code:
-                            Code.colorCode(preset.value.converted(to: UnitElectricResistance.ohms).value,
-                                           significantDigits: 3,
-                                           tolerance: preset.tolerance))
-                    
+                                Code.colorCode(preset.value.converted(to: UnitElectricResistance.ohms).value,
+                                               significantDigits: 3,
+                                               tolerance: preset.tolerance))
+                
             }
         )
     }
@@ -89,23 +89,34 @@ struct PresetView: View {
                             code.preset = preset
                             presentationMode.wrappedValue.dismiss()
                         }
-
-
+                    
+                    
                 }
                 .onDelete { indexSet in
                     presets.remove(atOffsets: indexSet)
                 }
+                .onMove(perform: move)
             }
             .navigationTitle("Presets")
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                                        let newPreset = CodePreset(value: code.ohms, tolerance: code.toleranceRing)
-                                        presets.append(newPreset)
-            })
-            {
-                Image(systemName: "plus")
-            })
+            .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            let newPreset = CodePreset(value: code.ohms, tolerance: code.toleranceRing)
+                            presets.append(newPreset)
+                        })
+                        {
+                            Image(systemName: "plus")
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+            }
         }
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        presets.move(fromOffsets: source, toOffset: destination)
     }
 }
 
