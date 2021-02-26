@@ -25,7 +25,11 @@ struct SMDContentView: View {
 
     let navigationBarTitle = NSLocalizedString("SMD Resistor Code",
                                 comment: "Title of SMD Content View on Navigation Bar")
-
+    let setValueTitle = NSLocalizedString("Set Value",
+                                comment: "Title of a button that sets a value")
+    let dismissTitle = NSLocalizedString("Dismiss",
+                                comment: "Title of a button that dismisses a sheet")
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -44,9 +48,9 @@ struct SMDContentView: View {
                 case .input:
                     NavigationView {
                         ResistorInputView(model: inputModel, showTolerances: false)
-                            .navigationBarItems(leading: Button("Dismiss") {
+                            .navigationBarItems(leading: Button(dismissTitle) {
                                 sheet = nil
-                            }, trailing: Button("Set Value") {
+                            }, trailing: Button(setValueTitle) {
                                 self.code.value = self.inputModel.value
                                 sheet = nil
                             }.disabled(self.inputModel.formInvalid)

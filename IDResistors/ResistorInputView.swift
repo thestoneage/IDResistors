@@ -14,13 +14,13 @@ class InputModel: ObservableObject {
     @Published var valueText: String = ""
     @Published var valueScale: Int = 1
     @Published var formInvalid:Bool = true
-    @Published var tolerance: Int = 2
 
     var valueMessage = ""
     var value: Double = 0.0
-    var toleranceRing: ToleranceRing = .gold
     
-    private let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
+    @Published var tolerance: Int = 2
+    var toleranceRing: ToleranceRing = .gold
+    let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
 
     private var cancellableSet: Set<AnyCancellable> = []
     private let formatter = NumberFormatter()
@@ -40,7 +40,7 @@ class InputModel: ObservableObject {
         $tolerance
             .removeDuplicates()
             .map { input in
-                self.tolerances[self.tolerance]
+                self.tolerances[input]
             }.eraseToAnyPublisher()
     }
 
@@ -94,9 +94,7 @@ class InputModel: ObservableObject {
 }
 
 struct ResistorInputView: View {
-    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var model: InputModel
-    @EnvironmentObject var code: Code
 
     @State var showTolerances: Bool
 
@@ -108,8 +106,8 @@ struct ResistorInputView: View {
                         comment: "Tolerance steppter title")
     private let buttonTitle = NSLocalizedString("Set Resistor Value",
                         comment: "Button title to set the value of the resistor")
-
-    let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
+    private let title = NSLocalizedString("Resistor Value",
+                        comment: "Headline of Resistor input view.")
 
 //    @State var tolerance = 2
     
@@ -124,20 +122,10 @@ struct ResistorInputView: View {
                     Text("MΩ").tag(1000000)
                 }.pickerStyle(SegmentedPickerStyle())
                 if showTolerances {
-                    Stepper("\(stepperTitle) \(tolerances[model.tolerance].string)", value: $model.tolerance, in: 0...(tolerances.count - 1))
+                    Stepper("\(stepperTitle) \(model.tolerances[model.tolerance].string)", value: $model.tolerance, in: 0...(model.tolerances.count - 1))
                 }
             }
-//            Section() {
-//                Button(action: {
-//                    self.code.value = self.model.value
-//                    if self.showTolerances {
-//                        self.code.toleranceRing = self.tolerances[self.tolerance]
-//                    }
-//                    self.presentationMode.wrappedValue.dismiss() }) {
-//                        Text(buttonTitle)
-//                }.disabled(model.formInvalid)
-//            }
-        }.navigationTitle("Resistor Value")
+        }.navigationTitle(title)
     }
 }
 
