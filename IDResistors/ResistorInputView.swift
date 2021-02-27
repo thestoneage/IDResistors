@@ -10,122 +10,85 @@
 import SwiftUI
 import Combine
 
-class InputModel: ObservableObject {
-    @Published var valueText: String = ""
-    @Published var valueScale: Int = 1
-    @Published var formInvalid:Bool = true
-
-    var valueMessage = ""
-    var value: Double = 0.0
-    
-    @Published var tolerance: Int = 2
-    var toleranceRing: ToleranceRing = .gold
-    let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
-
-    private var cancellableSet: Set<AnyCancellable> = []
+struct InputResistorModel {
     private let formatter = NumberFormatter()
+    
+    let tolerances = ToleranceRing.allCases.sorted(by: { $0.rawValue < $1.rawValue })
+    var toleranceIndex: Int = 2
+    var toleranceValue: Double {
+        toleranceRing.rawValue
+    }
+    var toleranceString: String {
+        toleranceRing.string
+    }
+    var toleranceRing: ToleranceRing {
+        tolerances[toleranceIndex]
+    }
 
-    private let inputMessage = NSLocalizedString("Enter a decimal number", comment: "Message when you input a resitor value.")
-
-    private var numberValuePublisher: AnyPublisher<Double?, Never> {
-        $valueText
-            .removeDuplicates()
-            .map { input in
-                self.formatter.number(from: input)?.doubleValue
-            }
-            .eraseToAnyPublisher()
+    var scale: Int = 1
+    
+    var resistor: String = ""
+    var resistorValue: Double? {
+        return formatter.number(from: resistor)?.doubleValue
+    }
+    var value: Double {
+        Double(scale) * (resistorValue ?? 0.0)
     }
     
-    private var toleranceValuePublisher: AnyPublisher<ToleranceRing, Never> {
-        $tolerance
-            .removeDuplicates()
-            .map { input in
-                self.tolerances[input]
-            }.eraseToAnyPublisher()
+    var inputIsValid: Bool {
+        return resistorValue != nil
     }
-
-    private var doubleValuePublisher: AnyPublisher<Double, Never> {
-        numberValuePublisher.compactMap { $0 }
-        .eraseToAnyPublisher()
+    
+    mutating func reset() {
+        scale = 1
+        resistor = ""
+        toleranceIndex = 2
     }
-
-    private var isValueInvalidPublisher: AnyPublisher<Bool, Never> {
-        numberValuePublisher.map {
-            $0 == nil
-        }.eraseToAnyPublisher()
-    }
-
-    private var valuePublisher: AnyPublisher<Double, Never> {
-        Publishers.CombineLatest(doubleValuePublisher, $valueScale)
-            .map { value, scale in
-                return value * Double(scale)
-        }.eraseToAnyPublisher()
-    }
-
-    init() {
-        isValueInvalidPublisher
-            .assign(to: \.formInvalid, on: self)
-            .store(in: &cancellableSet)
-
-        isValueInvalidPublisher
-            .map {
-                if $0 == true {
-                    return self.inputMessage
-                }
-                else {
-                    return ""
-                }
-            }
-            .assign(to: \.valueMessage, on: self)
-            .store(in: &cancellableSet)
-
-        valuePublisher
-            .assign(to: \.value, on: self)
-            .store(in: &cancellableSet)
-        
-        toleranceValuePublisher
-            .receive(on: RunLoop.main)
-            .assign(to: \.toleranceRing, on: self)
-            .store(in: &cancellableSet)
-    }
+    
 }
 
-struct ResistorInputView: View {
-    @ObservedObject var model: InputModel
+struct ResistorInputView2: View {
+    @Binding var model: InputResistorModel
 
     var showTolerances: Bool
 
+    private let stepperTitle = NSLocalizedString("Tolerance",
+                        comment: "Tolerance steppter title")
     private let textFieldTitle = NSLocalizedString("Enter Value:",
                         comment: "Title of Textfield to enter a resistor value")
     private let pickerTitle = NSLocalizedString("Unit",
                         comment: "Unit of input value")
-    private let stepperTitle = NSLocalizedString("Tolerance",
-                        comment: "Tolerance steppter title")
     private let buttonTitle = NSLocalizedString("Set Resistor Value",
                         comment: "Button title to set the value of the resistor")
     private let title = NSLocalizedString("Resistor Value",
                         comment: "Headline of Resistor input view.")
-    
+
+    private let invalidInputMessage = NSLocalizedString("Enter a decimal number",
+                                                 comment: "Message when you input a resitor value.")
+
     var body: some View {
         Form {
-            Section(footer: Text(model.valueMessage)) {
-                TextField(textFieldTitle, text: $model.valueText)
+            Section(footer: Text(model.inputIsValid ? "" : invalidInputMessage)) {
+                TextField(textFieldTitle, text: $model.resistor)
                     .keyboardType(.decimalPad)
-                Picker(pickerTitle, selection: $model.valueScale) {
+                Picker(pickerTitle, selection: $model.scale) {
                     Text("Ω").tag(1)
                     Text("kΩ").tag(1000)
                     Text("MΩ").tag(1000000)
                 }.pickerStyle(SegmentedPickerStyle())
                 if showTolerances {
-                    Stepper("\(stepperTitle) \(model.tolerances[model.tolerance].string)", value: $model.tolerance, in: 0...(model.tolerances.count - 1))
+                    Stepper("\(stepperTitle) \(model.toleranceString)", value: $model.toleranceIndex, in: 0...model.tolerances.count - 1)
                 }
             }
         }.navigationTitle(title)
+        .onAppear {
+            model.reset()
+        }
     }
 }
 
-struct SMDInputView_Previews: PreviewProvider {
+struct ResistorInputView_Previews: PreviewProvider {
     static var previews: some View {
-        ResistorInputView(model: InputModel(), showTolerances: false).environmentObject(Code(value: 27_000)!)
+        ResistorInputView2(model: .constant(InputResistorModel()), showTolerances: false).environmentObject(Code(value: 27_000)!)
     }
 }

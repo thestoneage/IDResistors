@@ -13,7 +13,7 @@ struct SMDContentView: View {
     @State var numberOfDigits: Int = 3
     @State var sheet: ContentViewSheet?
     
-    @ObservedObject var inputModel = InputModel()
+    @State var newValue = InputResistorModel()
     @EnvironmentObject var code: Code
 
 
@@ -47,13 +47,13 @@ struct SMDContentView: View {
                 switch item {
                 case .input:
                     NavigationView {
-                        ResistorInputView(model: inputModel, showTolerances: false)
+                        ResistorInputView2(model: $newValue, showTolerances: false)
                             .navigationBarItems(leading: Button(dismissTitle) {
                                 sheet = nil
                             }, trailing: Button(setValueTitle) {
-                                self.code.value = self.inputModel.value
+                                self.code.value = self.newValue.value
                                 sheet = nil
-                            }.disabled(self.inputModel.formInvalid)
+                            }.disabled(!self.newValue.inputIsValid)
                             )
                     }
                 case .presets:

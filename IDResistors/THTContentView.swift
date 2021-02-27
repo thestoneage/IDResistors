@@ -32,19 +32,21 @@ struct THTContentView: View {
     @State var significantDigits:Int = 2
     @State var sheet: ContentViewSheet?
     
-    @ObservedObject var inputModel = InputModel()
-
+    @State var newValue = InputResistorModel()
+    
     let pickerTitle = NSLocalizedString("Rings", comment: "Title of ring picker")
     let pickerItemTitle4R = NSLocalizedString("4 Rings", comment: "Title of 4 rings picker")
     let pickerItemTitle5R = NSLocalizedString("5 Rings", comment: "Title of 5 rings picker")
     let navigationBarTitle = NSLocalizedString("Resistor Color Code", comment: "Title of THTContentView")
-
+    
+    @State var newInput = InputResistorModel()
+    
     var measurementFormatter: MeasurementFormatter {
         let f = MeasurementFormatter()
         f.unitOptions = .providedUnit
         return f
     }
-
+    
     var resistorText: String {
         "\(measurementFormatter.string(from: code.scaledOhms)) \(code.toleranceRing.string)"
     }
@@ -59,8 +61,8 @@ struct THTContentView: View {
                     Text(pickerItemTitle4R).tag(2)
                     Text(pickerItemTitle5R).tag(3)
                 }.pickerStyle(SegmentedPickerStyle())
-                    .navigationBarTitle(
-                        Text(navigationBarTitle), displayMode: .inline)
+                .navigationBarTitle(
+                    Text(navigationBarTitle), displayMode: .inline)
                 THTCodeView(significantDigits: $significantDigits)
                 Spacer()
             }.padding()
@@ -68,15 +70,14 @@ struct THTContentView: View {
                 switch item {
                 case .input:
                     NavigationView {
-                        ResistorInputView(model: inputModel, showTolerances: true)
+                        ResistorInputView2(model: $newInput, showTolerances: true)
                             .navigationBarItems(leading: Button("Dismiss") {
                                 sheet = nil
                             }, trailing: Button("Set Value") {
-                                print(self.inputModel.toleranceRing)
-                                self.code.value = self.inputModel.value
-                                self.code.toleranceRing = self.inputModel.toleranceRing
+                                self.code.value = self.newInput.value
+                                self.code.toleranceRing = self.newInput.toleranceRing
                                 sheet = nil
-                            }.disabled(self.inputModel.formInvalid)
+                            }.disabled(!self.newInput.inputIsValid)
                             )
                     }
                 case .presets:
@@ -85,8 +86,8 @@ struct THTContentView: View {
             }
             .navigationBarItems(trailing:
                                     Button(action: {sheet = .presets}) {
-                Image(systemName: "list.bullet")
-            })
+                                        Image(systemName: "list.bullet")
+                                    })
         }
     }
 }
