@@ -16,7 +16,6 @@ struct SMDContentView: View {
     @State var newValue = InputResistorModel()
     @EnvironmentObject var code: Code
 
-
     let ohmFormatter: MeasurementFormatter = {
         let f = MeasurementFormatter()
         f.unitOptions = .providedUnit
@@ -47,7 +46,7 @@ struct SMDContentView: View {
                 switch item {
                 case .input:
                     NavigationView {
-                        ResistorInputView2(model: $newValue, showTolerances: false)
+                        ResistorInputView(model: $newValue, showTolerances: false)
                             .navigationBarItems(leading: Button(dismissTitle) {
                                 sheet = nil
                             }, trailing: Button(setValueTitle) {

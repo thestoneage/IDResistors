@@ -70,7 +70,7 @@ struct THTContentView: View {
                 switch item {
                 case .input:
                     NavigationView {
-                        ResistorInputView2(model: $newInput, showTolerances: true)
+                        ResistorInputView(model: $newInput, showTolerances: true)
                             .navigationBarItems(leading: Button("Dismiss") {
                                 sheet = nil
                             }, trailing: Button("Set Value") {

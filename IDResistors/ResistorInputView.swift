@@ -8,7 +8,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct InputResistorModel {
     private let formatter = NumberFormatter()
@@ -47,7 +46,7 @@ struct InputResistorModel {
     
 }
 
-struct ResistorInputView2: View {
+struct ResistorInputView: View {
     @Binding var model: InputResistorModel
 
     var showTolerances: Bool
@@ -89,6 +88,6 @@ struct ResistorInputView2: View {
 
 struct ResistorInputView_Previews: PreviewProvider {
     static var previews: some View {
-        ResistorInputView2(model: .constant(InputResistorModel()), showTolerances: false).environmentObject(Code(value: 27_000)!)
+        ResistorInputView(model: .constant(InputResistorModel()), showTolerances: false).environmentObject(Code(value: 27_000)!)
     }
 }
