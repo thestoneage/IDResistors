@@ -26,7 +26,7 @@ struct InputResistorModel {
 
     var scale: Int = 1
     
-    var resistor: String = ""
+    var resistor: String
     var resistorValue: Double? {
         return formatter.number(from: resistor)?.doubleValue
     }
@@ -38,15 +38,25 @@ struct InputResistorModel {
         return resistorValue != nil
     }
     
-    mutating func reset() {
-        scale = 1
-        resistor = ""
-        toleranceIndex = 2
+    mutating func set(to code: Code) {
+        let scaled = code.scaledOhms
+        print(scaled.unit)
+        switch scaled.unit {
+        case .ohms:
+            scale = 1
+        case .kiloohms:
+            scale = 1000
+        default:
+            scale = 1000000
+        }
+        toleranceIndex = tolerances.firstIndex(of: code.toleranceRing)!
+        resistor = "\(code.scaledOhms.value)"
     }
     
 }
 
 struct ResistorInputView: View {
+    @EnvironmentObject var code: Code
     @Binding var model: InputResistorModel
 
     var showTolerances: Bool
@@ -70,6 +80,9 @@ struct ResistorInputView: View {
             Section(footer: Text(model.inputIsValid ? "" : invalidInputMessage)) {
                 TextField(textFieldTitle, text: $model.resistor)
                     .keyboardType(.decimalPad)
+                    .onTapGesture {
+                        model.resistor = ""
+                    }
                 Picker(pickerTitle, selection: $model.scale) {
                     Text("Ω").tag(1)
                     Text("kΩ").tag(1000)
@@ -81,13 +94,13 @@ struct ResistorInputView: View {
             }
         }.navigationTitle(title)
         .onAppear {
-            model.reset()
+            model.set(to: code)
         }
     }
 }
 
 struct ResistorInputView_Previews: PreviewProvider {
     static var previews: some View {
-        ResistorInputView(model: .constant(InputResistorModel()), showTolerances: false).environmentObject(Code(value: 27_000)!)
+        ResistorInputView(model: .constant(InputResistorModel(resistor: "")), showTolerances: false).environmentObject(Code(value: 27_000)!)
     }
 }

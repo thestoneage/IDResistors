@@ -13,7 +13,7 @@ struct SMDContentView: View {
     @State var numberOfDigits: Int = 3
     @State var sheet: ContentViewSheet?
     
-    @State var newValue = InputResistorModel()
+    @State var newValue = InputResistorModel(resistor: "")
     @EnvironmentObject var code: Code
 
     let ohmFormatter: MeasurementFormatter = {

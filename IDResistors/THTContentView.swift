@@ -31,15 +31,13 @@ struct THTContentView: View {
     @EnvironmentObject var code: Code
     @State var significantDigits:Int = 2
     @State var sheet: ContentViewSheet?
-    
-    @State var newValue = InputResistorModel()
-    
+        
     let pickerTitle = NSLocalizedString("Rings", comment: "Title of ring picker")
     let pickerItemTitle4R = NSLocalizedString("4 Rings", comment: "Title of 4 rings picker")
     let pickerItemTitle5R = NSLocalizedString("5 Rings", comment: "Title of 5 rings picker")
     let navigationBarTitle = NSLocalizedString("Resistor Color Code", comment: "Title of THTContentView")
     
-    @State var newInput = InputResistorModel()
+    @State var newInput = InputResistorModel(resistor: "")
     
     var measurementFormatter: MeasurementFormatter {
         let f = MeasurementFormatter()
